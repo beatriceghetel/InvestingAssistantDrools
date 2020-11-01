@@ -40,16 +40,32 @@ public class AnalyzerRun {
 
         // -- INVESTITORI --
         
-        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0);
+        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, false);
         kieSession.insert(investitor1);
         
-        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.RETRAS, Venit.VARIABIL, 20_000.0, 2_000.0, 4_000.0);
+        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, true);
         kieSession.insert(investitor2);
 
-        Recomandare recomandare = new Recomandare(new Date(), investitor1);
+        Recomandare recomandare0 = new Recomandare(new Date(2020, 3, 1), investitor1);      // CAZ SPECIAL : LUNA MARTIE, business case special
+        kieSession.insert(recomandare0);
         
-        kieSession.insert(recomandare);
+        Recomandare recomandare1 = new Recomandare(new Date(), investitor1);        
+        kieSession.insert(recomandare1);
         
+        Recomandare recomandare2 = new Recomandare(new Date(), investitor2);        
+        kieSession.insert(recomandare2);
+        
+        Investitor investitor3 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, false);
+        kieSession.insert(investitor3);
+        
+        Investitor investitor4 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, true);
+        kieSession.insert(investitor4);
+
+        Recomandare recomandare3 = new Recomandare(new Date(), investitor3);        
+        kieSession.insert(recomandare3);
+        
+        Recomandare recomandare4 = new Recomandare(new Date(), investitor4);        
+        kieSession.insert(recomandare4);
         
         // -- DECLANSARE REGULI --
         
@@ -58,11 +74,20 @@ public class AnalyzerRun {
         
         // -- AFISARE RECOMANDARI & TRIMITERE MAILURI--
        
-        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare));
-        MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare));
+        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare0));
+//      MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare1));
         
-
-
+        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare1));
+//        MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare1));
+        
+        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare2));
+//      MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare2));
+        
+        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare3));
+//      MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare3));
+      
+        System.out.println(DisplayUtil.formatAfisareRecomandari(recomandare4));
+//    	MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare4));
 
 
     }

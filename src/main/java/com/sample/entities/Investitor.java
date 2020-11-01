@@ -30,6 +30,9 @@ public class Investitor {
 
     @Getter @Setter
     private Double venitulMediu;
+    
+    @Getter @Setter
+    private Boolean experientaInTranzactionare;
 
     public Boolean areExpunerePesteMarja() {
         return (this.avereaPersonala - MIN_LUNI_STABILE * (this.venitulMediu - this.datoriiLunare - MIN_CHELT_SUBZISTENTA)) > 0.4 * this.avereaPersonala;

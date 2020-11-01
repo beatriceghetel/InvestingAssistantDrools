@@ -14,7 +14,7 @@ public class DisplayUtil {
     	
     	String afisare = "";
     	
-    	afisare += String.format("\r\n <> Pentru %s \n am recomandat urmatoarele plasamente:", recomandare.getInvestitor().toString());
+    	afisare += String.format("\r\n <> Pentru %s cu expunere %s \n am recomandat urmatoarele plasamente:", recomandare.getInvestitor().toString(), recomandare.getInvestitor().areExpunerePesteMarja() ? "peste 40%" : "sub 40%");
     	
     	for (PlasamentRecomandat pr : recomandare.getPlasamente()) {
         	afisare += "\r\n\t\t" + pr.getPlasament().getNume() + " ; " 
