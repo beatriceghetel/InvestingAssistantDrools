@@ -1,0 +1,48 @@
+import com.sample.*;
+import com.sample.entities.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+rule "discount pentru clienti noi"
+when
+    c:Client(tip == "nou")
+    co:Comanda(client == c)
+then
+    co.setDiscountPeComanda(0.1 * co.getValoareComanda());
+end
+
+rule "discount pentru produse de lux"
+when
+    c:Client()
+    co:Comanda(client==c)
+    p:Produs(tip=="de lux")
+    a:ArticolComanda(comanda==co, produs==p)
+then
+    a.setDiscount(0.05);
+end
+
+rule "discount pentru medicamente"
+when
+    c:Client()
+    co:Comanda(client==c)
+    p:Produs(tip=="medicament")
+    a:ArticolComanda(comanda==co, produs==p)
+then
+    a.setDiscount(0.06);
+end
+
+rule "investitor la inceputul carierei"
+when
+    investitor1 : Investitor(etapaCarierei == "INCEPUT")
+    recomandare : Recomandare(investitor == investitor1)
+then
+    Plasament plasament1 = new Plasament("ING - Depozit de economii", "depozit la vedere", 0.007);
+    PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.4);
+    recomandare.getPlasamente().add(plasamentRecomandat1);
+    
+    Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.6);
+    recomandare.getPlasamente().add(plasamentRecomandat2);    
+end
