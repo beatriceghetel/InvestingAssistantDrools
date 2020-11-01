@@ -1,5 +1,8 @@
 package com.sample.entities;
 
+import com.sample.classifications.Cariera;
+import com.sample.classifications.Venit;
+
 import lombok.*;
 
 @NoArgsConstructor
@@ -10,18 +13,14 @@ public class Investitor {
     private static final Double MIN_CHELT_SUBZISTENTA = 250.0;
     private static final Integer MIN_LUNI_STABILE = 6;
 
-//    public enum Venit { FIX, VARIABIL, ALTELE }
-
-//    public enum Cariera { INCEPUT, ACTIV, FAMILIE, PERSONALE, RETRAS }
-
     @Getter @Setter
     private String email;
 
     @Getter @Setter
-    private String etapaCarierei;
+    private Cariera etapaCarierei;
 
     @Getter @Setter
-    private String categoriaVeniturilor;
+    private Venit categoriaVeniturilor;
 
     @Getter @Setter
     private Double avereaPersonala;

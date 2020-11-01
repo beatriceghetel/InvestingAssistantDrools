@@ -8,6 +8,8 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import com.sample.classifications.Cariera;
+import com.sample.classifications.Venit;
 import com.sample.entities.Investitor;
 import com.sample.entities.Plasament;
 import com.sample.entities.Recomandare;
@@ -38,10 +40,10 @@ public class AnalyzerRun {
 
         // -- INVESTITORI --
         
-        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", "INCEPUT", "FIX", 20_000.0, 2_000.0, 4_000.0);
+        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0);
         kieSession.insert(investitor1);
         
-        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", "RETRAS", "VARIABIL", 20_000.0, 2_000.0, 4_000.0);
+        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.RETRAS, Venit.VARIABIL, 20_000.0, 2_000.0, 4_000.0);
         kieSession.insert(investitor2);
 
         Recomandare recomandare = new Recomandare(new Date(), investitor1);

@@ -1,41 +1,15 @@
 import com.sample.*;
 import com.sample.entities.*;
+import com.sample.classifications.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-rule "discount pentru clienti noi"
-when
-    c:Client(tip == "nou")
-    co:Comanda(client == c)
-then
-    co.setDiscountPeComanda(0.1 * co.getValoareComanda());
-end
-
-rule "discount pentru produse de lux"
-when
-    c:Client()
-    co:Comanda(client==c)
-    p:Produs(tip=="de lux")
-    a:ArticolComanda(comanda==co, produs==p)
-then
-    a.setDiscount(0.05);
-end
-
-rule "discount pentru medicamente"
-when
-    c:Client()
-    co:Comanda(client==c)
-    p:Produs(tip=="medicament")
-    a:ArticolComanda(comanda==co, produs==p)
-then
-    a.setDiscount(0.06);
-end
 
 rule "investitor la inceputul carierei"
 when
-    investitor1 : Investitor(etapaCarierei == "INCEPUT")
+    investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT)
     recomandare : Recomandare(investitor == investitor1)
 then
     Plasament plasament1 = new Plasament("ING - Depozit de economii", "depozit la vedere", 0.007);
