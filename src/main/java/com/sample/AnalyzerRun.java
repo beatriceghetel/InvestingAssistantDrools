@@ -40,25 +40,25 @@ public class AnalyzerRun {
 
         // -- INVESTITORI --
         
-        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, false);
+        Investitor investitor1 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, false, false);
         kieSession.insert(investitor1);
         
-        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, true);
+        Investitor investitor2 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 20_000.0, 2_000.0, 4_000.0, true, true);
         kieSession.insert(investitor2);        
         
-        Investitor investitor3 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, false);
+        Investitor investitor3 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, false, false);
         kieSession.insert(investitor3);
         
-        Investitor investitor4 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, true);
+        Investitor investitor4 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 100_000.0, 2_000.0, 4_000.0, true, false);
         kieSession.insert(investitor4);
         
-        Investitor investitor5 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 200_000.0, 1_000.0, 4_000.0, true);
+        Investitor investitor5 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 200_000.0, 1_000.0, 4_000.0, true, false);
         kieSession.insert(investitor5);
         
-        Investitor investitor6 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 400_000.0, 1_000.0, 4_000.0, true);
+        Investitor investitor6 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.FIX, 400_000.0, 1_000.0, 4_000.0, true, false);
         kieSession.insert(investitor6);
         
-        Investitor investitor7 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.VARIABIL, 400_000.0, 2_000.0, 4_000.0, true);
+        Investitor investitor7 = new Investitor("beatrice.ghetel27@gmail.com", Cariera.INCEPUT, Venit.VARIABIL, 400_000.0, 2_000.0, 4_000.0, true, false);
         kieSession.insert(investitor7);
         
         // -- RECOMANDARI --

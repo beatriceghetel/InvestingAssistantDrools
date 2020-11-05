@@ -1,6 +1,8 @@
 import com.sample.*;
 import com.sample.entities.*;
 import com.sample.classifications.*;
+import com.sample.notifier.MailNotifier;
+import com.sample.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +25,7 @@ end
 
 
 rule "investitor cu venituri lunare fixe, avere pana in 50k, si fara experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "false", avereaPersonala > 0, avereaPersonala < 50000)
     eval(investitor1.areExpunerePesteMarja())
@@ -46,6 +49,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere pana in 50k, cu experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor2 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala > 0, avereaPersonala < 50000)
     eval(investitor2.areExpunerePesteMarja())
@@ -65,6 +69,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere intre 50k si 150k, fara experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "false", avereaPersonala >= 50000, avereaPersonala < 150000)
     eval(investitor1.areExpunerePesteMarja())
@@ -84,6 +89,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere intre 50k si 150k, cu experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 50000, avereaPersonala < 150000)
     eval(investitor1.areExpunerePesteMarja())
@@ -103,6 +109,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere intre 150k si 300k, fara experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 150000, avereaPersonala < 300000)
     eval(investitor1.areExpunerePesteMarja())
@@ -122,6 +129,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere peste 300k, fara experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 300000)
     eval(investitor1.areExpunerePesteMarja())
@@ -137,6 +145,7 @@ then
 end
 
 rule "investitor cu venituri lunare fixe, avere peste 300k, cu experienta in tranzactionare, expunere peste 40%"
+salience 50
 when
     investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 300000)
     eval(investitor1.areExpunerePesteMarja())
@@ -149,4 +158,13 @@ then
     Plasament plasament3 = new Plasament("Investitii Imobiliare", "imobiliare", 0.2);
     PlasamentRecomandat plasamentRecomandat3 = new PlasamentRecomandat(recomandare, plasament3, 0.7);
     recomandare.getPlasamente().add(plasamentRecomandat3);
+end
+
+rule "investitor abonat la email"
+salience 25
+when
+    investitor1 : Investitor(abonatLaMail == "true")
+    recomandare : Recomandare(investitor == investitor1)
+then
+	MailNotifier.sendMail(investitor1, DisplayUtil.formatAfisareRecomandari(recomandare));
 end
