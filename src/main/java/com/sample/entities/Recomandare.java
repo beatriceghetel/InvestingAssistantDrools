@@ -21,6 +21,10 @@ public class Recomandare {
     private List<PlasamentRecomandat> plasamente = new ArrayList<>();
 
     private Double profitPeRecomandare = 0.0;
+    
+    @Getter @Setter
+    private Double marjaEconomii = 0.0;
+    
     /**
      * Metoda parcurge toate plasamentele financiare recomandate unui investitor si calculeaza profitul pe care acesta
      * obtine, in functie de procentul investit in fiecare plasament si procentul de profit mediu pentru acel
@@ -30,7 +34,7 @@ public class Recomandare {
     public Double getProfitPeRecomandare() {
     	this.profitPeRecomandare = 0.0;
         for (PlasamentRecomandat plasamentRecomandat : this.plasamente) {
-        	this.profitPeRecomandare += (plasamentRecomandat.getProcent() * investitor.getAvereaPersonala() * plasamentRecomandat.getPlasament().getProfitMediu());
+        	this.profitPeRecomandare += (plasamentRecomandat.getProcent() * (investitor.getAvereaPersonala() - this.marjaEconomii * investitor.getAvereaPersonala()) * plasamentRecomandat.getPlasament().getProfitMediu());
         }
         return profitPeRecomandare;
     }

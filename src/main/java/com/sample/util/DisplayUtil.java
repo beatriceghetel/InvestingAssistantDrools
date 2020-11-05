@@ -19,8 +19,9 @@ public class DisplayUtil {
     	for (PlasamentRecomandat pr : recomandare.getPlasamente()) {
         	afisare += "\r\n\t\t" + pr.getPlasament().getNume() + " ; " 
         		+ pr.getPlasament().getTip() + " ; " 
-        		+ (pr.getProcent() * 100) + "% ; " 
-        		+ (pr.getPlasament().getProfitMediu() * 100) + "%";
+        		+ (pr.getProcent() * 100) + "% AP investita; "
+                + (pr.getRecomandare().getInvestitor().getAvereaPersonala() * pr.getProcent() - pr.getRecomandare().getInvestitor().getAvereaPersonala() * recomandare.getMarjaEconomii()) + " RON investiti din AP ; "
+        		+ (pr.getPlasament().getProfitMediu() * 100) + "% profit mediu / plasament";
         }
         afisare += String.format("\r\n\t <> Profit calculat: %f \n", recomandare.getProfitPeRecomandare());
         

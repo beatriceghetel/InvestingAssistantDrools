@@ -6,6 +6,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+global Integer count;
+
+rule "Verificare luni speciale, martie, iulie si noiembrie"
+salience 100
+when
+	recomandareS : Recomandare()
+	eval(recomandareS.getDataRecomandare().getMonth() == 3 || recomandareS.getDataRecomandare().getMonth() == 7 || recomandareS.getDataRecomandare().getMonth() == 11)
+then 
+    Plasament plasament0 = new Plasament("O parte din AP [5%] nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
+    PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandareS, plasament0, 0.05);
+    recomandareS.getPlasamente().add(plasamentRecomandat0);
+	recomandareS.setMarjaEconomii(0.05);
+end
+//	kcontext.getKieRuntime().setGlobal("count", 1);
+
 
 rule "investitor cu venituri lunare fixe, avere pana in 50k, si fara experienta in tranzactionare, expunere peste 40%"
 when
@@ -17,16 +32,16 @@ then
     PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.4);
     recomandare.getPlasamente().add(plasamentRecomandat1);
     
-    double coeff = 0;
-    if (recomandare.getDataRecomandare().getMonth() == 3) {
-    	coeff = 0.05;
-    	Plasament plasament0 = new Plasament("O parte din bani nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
-    	PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandare, plasament0, coeff);
-    	recomandare.getPlasamente().add(plasamentRecomandat0);
-    }
+    //double coeff = 0;
+    //if (recomandare.getDataRecomandare().getMonth() == 3) {
+    //	coeff = 0.05;
+    //	Plasament plasament0 = new Plasament("O parte din bani nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
+    //	PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandare, plasament0, coeff);
+    //	recomandare.getPlasamente().add(plasamentRecomandat0);
+    //}
     
     Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
-    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, (0.6 - coeff));
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, (0.6));
     recomandare.getPlasamente().add(plasamentRecomandat2);
 end
 
@@ -40,16 +55,8 @@ then
     PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.4);
     recomandare.getPlasamente().add(plasamentRecomandat1);
     
-    double coeff = 0;
-    if (recomandare.getDataRecomandare().getMonth() == 3) {
-    	coeff = 0.05;
-    	Plasament plasament0 = new Plasament("O parte din bani nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
-    	PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandare, plasament0, coeff);
-    	recomandare.getPlasamente().add(plasamentRecomandat0);
-    }
-    
     Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
-    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4 - coeff);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4);
     recomandare.getPlasamente().add(plasamentRecomandat2);
     
     Plasament plasament3 = new Plasament("Tranzactionare", "tranzactionare", 0.35);
@@ -67,16 +74,8 @@ then
     PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.2);
     recomandare.getPlasamente().add(plasamentRecomandat1);
     
-    double coeff = 0;
-    if (recomandare.getDataRecomandare().getMonth() == 3) {
-    	coeff = 0.05;
-    	Plasament plasament0 = new Plasament("O parte din bani nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
-    	PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandare, plasament0, coeff);
-    	recomandare.getPlasamente().add(plasamentRecomandat0);
-    }
-    
     Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
-    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4 - coeff);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4);
     recomandare.getPlasamente().add(plasamentRecomandat2);
     
     Plasament plasament3 = new Plasament("Investitii Imobiliare", "imobiliare", 0.2);
@@ -94,19 +93,60 @@ then
     PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.2);
     recomandare.getPlasamente().add(plasamentRecomandat1);
     
-    double coeff = 0;
-    if (recomandare.getDataRecomandare().getMonth() == 3) {
-    	coeff = 0.05;
-    	Plasament plasament0 = new Plasament("O parte din bani nu vor fi investiti deoarece e o luna speciala" , "fara investitie", 0.0);
-    	PlasamentRecomandat plasamentRecomandat0 = new PlasamentRecomandat(recomandare, plasament0, coeff);
-    	recomandare.getPlasamente().add(plasamentRecomandat0);
-    }
-    
     Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
-    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4 - coeff);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.4);
     recomandare.getPlasamente().add(plasamentRecomandat2);
     
     Plasament plasament3 = new Plasament("Tranzactionare", "tranzactionare", 0.35);
     PlasamentRecomandat plasamentRecomandat3 = new PlasamentRecomandat(recomandare, plasament3, 0.4);
+    recomandare.getPlasamente().add(plasamentRecomandat3);
+end
+
+rule "investitor cu venituri lunare fixe, avere intre 150k si 300k, fara experienta in tranzactionare, expunere peste 40%"
+when
+    investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 150000, avereaPersonala < 300000)
+    eval(investitor1.areExpunerePesteMarja())
+    recomandare : Recomandare(investitor == investitor1)
+then
+    Plasament plasament1 = new Plasament("ING - Depozit de economii", "depozit la vedere", 0.007);
+    PlasamentRecomandat plasamentRecomandat1 = new PlasamentRecomandat(recomandare, plasament1, 0.1);
+    recomandare.getPlasamente().add(plasamentRecomandat1);
+
+    Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.3);
+    recomandare.getPlasamente().add(plasamentRecomandat2);
+    
+    Plasament plasament3 = new Plasament("Investitii Imobiliare", "imobiliare", 0.2);
+    PlasamentRecomandat plasamentRecomandat3 = new PlasamentRecomandat(recomandare, plasament3, 0.6);
+    recomandare.getPlasamente().add(plasamentRecomandat3);
+end
+
+rule "investitor cu venituri lunare fixe, avere peste 300k, fara experienta in tranzactionare, expunere peste 40%"
+when
+    investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 300000)
+    eval(investitor1.areExpunerePesteMarja())
+    recomandare : Recomandare(investitor == investitor1)
+then
+    Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.3);
+    recomandare.getPlasamente().add(plasamentRecomandat2);
+    
+    Plasament plasament3 = new Plasament("Tranzactionare", "tranzactionare", 0.35);
+    PlasamentRecomandat plasamentRecomandat3 = new PlasamentRecomandat(recomandare, plasament3, 0.7);
+    recomandare.getPlasamente().add(plasamentRecomandat3);
+end
+
+rule "investitor cu venituri lunare fixe, avere peste 300k, cu experienta in tranzactionare, expunere peste 40%"
+when
+    investitor1 : Investitor(etapaCarierei == Cariera.INCEPUT, experientaInTranzactionare == "true", avereaPersonala >= 300000)
+    eval(investitor1.areExpunerePesteMarja())
+    recomandare : Recomandare(investitor == investitor1)
+then
+    Plasament plasament2 = new Plasament("ING - Depozit de economii la termen", "depozit la termen", 0.02);
+    PlasamentRecomandat plasamentRecomandat2 = new PlasamentRecomandat(recomandare, plasament2, 0.3);
+    recomandare.getPlasamente().add(plasamentRecomandat2);
+    
+    Plasament plasament3 = new Plasament("Investitii Imobiliare", "imobiliare", 0.2);
+    PlasamentRecomandat plasamentRecomandat3 = new PlasamentRecomandat(recomandare, plasament3, 0.7);
     recomandare.getPlasamente().add(plasamentRecomandat3);
 end
